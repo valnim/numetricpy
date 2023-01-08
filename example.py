@@ -1,8 +1,8 @@
-from ValuesWithUnits import ValueWithUnit
+from numetric import UnitValue
 
-x = ValueWithUnit(10, 'm*s^2')
-y = ValueWithUnit(5, 'm*s^-1')
-z = ValueWithUnit(2, 'm*s^2')
+x = UnitValue(10, 'm*s^2')
+y = UnitValue(5, 'm*s^-1')
+z = UnitValue(2, 'm*s^2')
 
 a = x + z
 b = x - z

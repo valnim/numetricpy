@@ -1,4 +1,4 @@
-class ValueWithUnit:
+class UnitValue:
     def __init__(self, value, unit):
         self.value = value
         self.unitDict = {'s': 0, 'm': 0, 'kg': 0, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
@@ -20,28 +20,28 @@ class ValueWithUnit:
             raise ValueError("Cannot add quantities with different base units")
         if self.unitDict.keys() != other.unitDict.keys():
             raise ValueError("Cannot add quantities with different exponents")
-        return ValueWithUnit(self.value + other.value, self.unitDict)
+        return UnitValue(self.value + other.value, self.unitDict)
 
     def __sub__(self, other):
         if self.unitDict.keys() != other.unitDict.keys():
             raise ValueError("Cannot add quantities with different base units")
         if self.unitDict.keys() != other.unitDict.keys():
             raise ValueError("Cannot add quantities with different exponents")
-        return ValueWithUnit(self.value - other.value, self.unitDict)
+        return UnitValue(self.value - other.value, self.unitDict)
 
     def __mul__(self, other):
         # Combine the units of self and other by adding the exponents
         combined_unit = {k: self.unitDict[k] + other.unitDict[k] for k in self.unitDict.keys()}
-        return ValueWithUnit(self.value * other.value, combined_unit)
+        return UnitValue(self.value * other.value, combined_unit)
 
     def __truediv__(self, other):
         # Combine the units of self and other by subtracting the exponents
         combined_unit = {k: self.unitDict[k] - other.unitDict[k] for k in self.unitDict.keys()}
-        return ValueWithUnit(self.value / other.value, combined_unit)
+        return UnitValue(self.value / other.value, combined_unit)
 
     def __pow__(self, power):
         # Raise the value of self to the power and raise the exponents of the unit
-        return ValueWithUnit(self.value ** power, {k: power * self.unitDict[k] for k in self.unitDict.keys()})
+        return UnitValue(self.value ** power, {k: power * self.unitDict[k] for k in self.unitDict.keys()})
 
     def __eq__(self, other):
         # If the units are the same, then compare the values
@@ -92,10 +92,10 @@ class ValueWithUnit:
         return str(self.value) + ' ' + unit_str
 
 
-class ConstantsWithUnits:
+class UnitConstants:
     def __init__(self):
-        self.gravity = ValueWithUnit(9.81, 'm*s^-2')
-        self.speed_of_light = ValueWithUnit(299792458, 'm*s^-1')
-        self.plank_constant = ValueWithUnit(6.62607004e-34, 'm^2*kg*s^-1')
+        self.gravity = UnitValue(9.81, 'm*s^-2')
+        self.speed_of_light = UnitValue(299792458, 'm*s^-1')
+        self.plank_constant = UnitValue(6.62607004e-34, 'm^2*kg*s^-1')
 
 
