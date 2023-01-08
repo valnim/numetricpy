@@ -43,6 +43,42 @@ class ValueWithUnit:
         # Raise the value of self to the power and raise the exponents of the unit
         return ValueWithUnit(self.value ** power, {k: power * self.unitDict[k] for k in self.unitDict.keys()})
 
+    def __eq__(self, other):
+        # If the units are the same, then compare the values
+        if self.unitDict.keys() == other.unitDict.keys():
+            return self.value == other.value
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        if self.unitDict.keys() != other.unitDict.keys():
+            raise ValueError("Cannot compare quantities with different base units")
+        if self.unitDict.keys() != other.unitDict.keys():
+            raise ValueError("Cannot compare quantities with different exponents")
+        return self.value < other.value
+
+    def __le__(self, other):
+        return self.__lt__(other) or self.__eq__(other)
+
+    def __gt__(self, other):
+        if self.unitDict.keys() != other.unitDict.keys():
+            raise ValueError("Cannot compare quantities with different base units")
+        if self.unitDict.keys() != other.unitDict.keys():
+            raise ValueError("Cannot compare quantities with different exponents")
+        return self.value > other.value
+
+    def __ge__(self, other):
+        return self.__gt__(other) or self.__eq__(other)
+
+    def __hash__(self):
+        return hash((self.value, self.unitDict))
+
+    def __repr__(self):
+        return f'ValueWithUnit("{self.value}","{self.unitDict}")'
+
     def __str__(self):
         # Create a string of the unit
         unit_str = ''
@@ -61,4 +97,5 @@ class ConstantsWithUnits:
         self.gravity = ValueWithUnit(9.81, 'm*s^-2')
         self.speed_of_light = ValueWithUnit(299792458, 'm*s^-1')
         self.plank_constant = ValueWithUnit(6.62607004e-34, 'm^2*kg*s^-1')
+
 

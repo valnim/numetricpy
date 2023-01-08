@@ -10,6 +10,13 @@ c = x * y
 d = x / y
 e = x ** 2
 
+print(x > z)
+print(x >= z)
+print(x < z)
+print(x <= z)
+print(x == x)
+
+xstr = repr(x)
 
 print(a)
 print(b)
