@@ -9,6 +9,11 @@ b = x - z
 c = x * y
 d = x / y
 e = x ** 2
+f = x * 2
+g = 2 * x
+h = x / 2
+i = 2 / x
+j = i * x
 
 print(x > z)
 print(x >= z)
@@ -23,6 +28,7 @@ print(b)
 print(c)
 print(d)
 print(e)
+print(f)
 
 input("Press any key to continue...")
 

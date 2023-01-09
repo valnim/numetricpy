@@ -30,14 +30,41 @@ class UnitValue:
         return UnitValue(self.value - other.value, self.unitDict)
 
     def __mul__(self, other):
-        # Combine the units of self and other by adding the exponents
-        combined_unit = {k: self.unitDict[k] + other.unitDict[k] for k in self.unitDict.keys()}
-        return UnitValue(self.value * other.value, combined_unit)
+        if isinstance(other, UnitValue):
+            # For two UnitValue Elements combine the units of self and other by adding the exponents
+            combined_unit = {k: self.unitDict[k] + other.unitDict[k] for k in self.unitDict.keys()}
+            return UnitValue(self.value * other.value, combined_unit)
+        else:
+            # For multiplication with numbers without a unit keep unit of self
+            return UnitValue(self.value * other, self.unitDict)
+
+    def __rmul__(self, other):
+        if isinstance(other, UnitValue):
+            # For two UnitValue Elements combine the units of self and other by adding the exponents
+            combined_unit = {k: self.unitDict[k] + other.unitDict[k] for k in self.unitDict.keys()}
+            return UnitValue(other.value * self.value, combined_unit)
+        else:
+            # For multiplication with numbers without a unit keep unit of self
+            return UnitValue(other * self.value, self.unitDict)
 
     def __truediv__(self, other):
-        # Combine the units of self and other by subtracting the exponents
-        combined_unit = {k: self.unitDict[k] - other.unitDict[k] for k in self.unitDict.keys()}
-        return UnitValue(self.value / other.value, combined_unit)
+        if isinstance(other, UnitValue):
+            # Combine the units of self and other by subtracting the exponents
+            combined_unit = {k: self.unitDict[k] - other.unitDict[k] for k in self.unitDict.keys()}
+            return UnitValue(self.value / other.value, combined_unit)
+        else:
+            # For division by numbers without a unit keep unit of self
+            return UnitValue(self.value / other, self.unitDict)
+
+    def __rtruediv__(self, other):
+        if isinstance(other, UnitValue):
+            # Combine the units of self and other by subtracting the exponents
+            combined_unit = {k: other.unitDict[k] - self.unitDict[k] for k in self.unitDict.keys()}
+            return UnitValue(other.value / self.value, combined_unit)
+        else:
+            # For division of numbers without a unit invert unit of self
+            combined_unit = {k: -self.unitDict[k] for k in self.unitDict.keys()}
+            return UnitValue(other / self.value, combined_unit)
 
     def __pow__(self, power):
         # Raise the value of self to the power and raise the exponents of the unit
