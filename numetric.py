@@ -114,6 +114,8 @@ class UnitValue:
                 unit_str += k + '*'
             elif self.unitDict[k] > 1:
                 unit_str += k + '^' + str(self.unitDict[k]) + '*'
+            elif self.unitDict[k] < 0:
+                unit_str += k + '^' + str(self.unitDict[k]) + '*'
         # Remove the last '*' from the unit string
         unit_str = unit_str[:-1]
         return str(self.value) + ' ' + unit_str
