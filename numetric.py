@@ -228,8 +228,17 @@ class UnitValue:
         elif unit == 'J':   # Joule
             factor = 1
             conv_dict = {'s': -2, 'm': 2, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
+        elif unit == 'eV':  # Electron Volt
+            factor = 1.6021766208e-19
+            conv_dict = {'s': -2, 'm': 2, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
+        elif unit == 'cal':     # Calorie
+            factor = 4.184
+            conv_dict = {'s': -2, 'm': 2, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
         elif unit == 'W':   # Watt
             factor = 1
+            conv_dict = {'s': -3, 'm': 2, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
+        elif unit == 'hp':  # Horse Power
+            factor = 745.7
             conv_dict = {'s': -3, 'm': 2, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
         elif unit == 'C':   # Coulomb
             factor = 1
