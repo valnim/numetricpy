@@ -27,8 +27,7 @@ This can help reduce the likelihood of errors in calculations and improve the cl
 * milliampere (mA)
 * kiloampere (kA)
 * megaampere (MA)
-### Luminous Intensity:
-* candela (cd)
+
 ### Amount of Substance:
 * kilomole (kmol)
 
