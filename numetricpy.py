@@ -39,7 +39,7 @@ def convert_to_si(unit):
         factor = 1
         conv_dict = {'s': 0, 'm': 0, 'kg': 0, 'A': 0, 'K': 1, 'mol': 0, 'cd': 0}
     elif unit == '°F':  # Degree Fahrenheit
-        offset = 459.67
+        offset = 255.3722
         factor = 5/9
         conv_dict = {'s': 0, 'm': 0, 'kg': 0, 'A': 0, 'K': 1, 'mol': 0, 'cd': 0}
 
