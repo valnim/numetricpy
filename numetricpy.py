@@ -1,4 +1,4 @@
-def convertToSi(unit):
+def convert_to_si(unit):
     offset = 0
     # SI Units with Prefixes
     # Length Units
@@ -149,88 +149,88 @@ class UnitValue:
     def __init__(self, value, unit):
         factor = 1
         offset = 0
-        self.unitDict = {'s': 0, 'm': 0, 'kg': 0, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
+        self.unit_dict = {'s': 0, 'm': 0, 'kg': 0, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
         # Extracts the unit of the object if the unit parameter is a string
         if isinstance(unit, str):
             unit_list = unit.split('*')
             for k in unit_list:
                 if '^' in k:
                     unit_and_exp = k.split('^')
-                    if self.isSiUnit(unit_and_exp[0]):
-                        self.unitDict[unit_and_exp[0]] = int(unit_and_exp[1])
+                    if self.is_si_unit(unit_and_exp[0]):
+                        self.unit_dict[unit_and_exp[0]] = int(unit_and_exp[1])
                     else:
-                        factor, offset, si_unit = convertToSi(unit_and_exp[0])
-                        self.unitDict = {i: self.unitDict[i] + si_unit[i] * int(unit_and_exp[1])
-                                         for i in self.unitDict.keys()}
+                        factor, offset, si_unit = convert_to_si(unit_and_exp[0])
+                        self.unit_dict = {i: self.unit_dict[i] + si_unit[i] * int(unit_and_exp[1])
+                                          for i in self.unit_dict.keys()}
                 else:
-                    if self.isSiUnit(k):
-                        self.unitDict[k] = 1
+                    if self.is_si_unit(k):
+                        self.unit_dict[k] = 1
                     else:
-                        factor, offset, si_unit = convertToSi(k)
-                        self.unitDict = {i: self.unitDict[i] + si_unit[i] for i in self.unitDict.keys()}
+                        factor, offset, si_unit = convert_to_si(k)
+                        self.unit_dict = {i: self.unit_dict[i] + si_unit[i] for i in self.unit_dict.keys()}
         # If the unit parameter is a dictionary, then it is the unit of the object
         elif isinstance(unit, dict):
-            self.unitDict = unit
+            self.unit_dict = unit
         self.value = value * factor + offset
 
     def __add__(self, other):
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot add quantities with different base units")
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot add quantities with different exponents")
-        return UnitValue(self.value + other.value, self.unitDict)
+        return UnitValue(self.value + other.value, self.unit_dict)
 
     def __sub__(self, other):
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot add quantities with different base units")
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot add quantities with different exponents")
-        return UnitValue(self.value - other.value, self.unitDict)
+        return UnitValue(self.value - other.value, self.unit_dict)
 
     def __mul__(self, other):
         if isinstance(other, UnitValue):
             # For two UnitValue Elements combine the units of self and other by adding the exponents
-            combined_unit = {k: self.unitDict[k] + other.unitDict[k] for k in self.unitDict.keys()}
+            combined_unit = {k: self.unit_dict[k] + other.unit_dict[k] for k in self.unit_dict.keys()}
             return UnitValue(self.value * other.value, combined_unit)
         else:
             # For multiplication with numbers without a unit keep unit of self
-            return UnitValue(self.value * other, self.unitDict)
+            return UnitValue(self.value * other, self.unit_dict)
 
     def __rmul__(self, other):
         if isinstance(other, UnitValue):
             # For two UnitValue Elements combine the units of self and other by adding the exponents
-            combined_unit = {k: self.unitDict[k] + other.unitDict[k] for k in self.unitDict.keys()}
+            combined_unit = {k: self.unit_dict[k] + other.unit_dict[k] for k in self.unit_dict.keys()}
             return UnitValue(other.value * self.value, combined_unit)
         else:
             # For multiplication with numbers without a unit keep unit of self
-            return UnitValue(other * self.value, self.unitDict)
+            return UnitValue(other * self.value, self.unit_dict)
 
     def __truediv__(self, other):
         if isinstance(other, UnitValue):
             # Combine the units of self and other by subtracting the exponents
-            combined_unit = {k: self.unitDict[k] - other.unitDict[k] for k in self.unitDict.keys()}
+            combined_unit = {k: self.unit_dict[k] - other.unit_dict[k] for k in self.unit_dict.keys()}
             return UnitValue(self.value / other.value, combined_unit)
         else:
             # For division by numbers without a unit keep unit of self
-            return UnitValue(self.value / other, self.unitDict)
+            return UnitValue(self.value / other, self.unit_dict)
 
     def __rtruediv__(self, other):
         if isinstance(other, UnitValue):
             # Combine the units of self and other by subtracting the exponents
-            combined_unit = {k: other.unitDict[k] - self.unitDict[k] for k in self.unitDict.keys()}
+            combined_unit = {k: other.unit_dict[k] - self.unit_dict[k] for k in self.unit_dict.keys()}
             return UnitValue(other.value / self.value, combined_unit)
         else:
             # For division of numbers without a unit invert unit of self
-            combined_unit = {k: -self.unitDict[k] for k in self.unitDict.keys()}
+            combined_unit = {k: -self.unit_dict[k] for k in self.unit_dict.keys()}
             return UnitValue(other / self.value, combined_unit)
 
     def __pow__(self, power):
         # Raise the value of self to the power and raise the exponents of the unit
-        return UnitValue(self.value ** power, {k: power * self.unitDict[k] for k in self.unitDict.keys()})
+        return UnitValue(self.value ** power, {k: power * self.unit_dict[k] for k in self.unit_dict.keys()})
 
     def __eq__(self, other):
         # If the units are the same, then compare the values
-        if self.unitDict.keys() == other.unitDict.keys():
+        if self.unit_dict.keys() == other.unit_dict.keys():
             return self.value == other.value
         else:
             return False
@@ -239,9 +239,9 @@ class UnitValue:
         return not self.__eq__(other)
 
     def __lt__(self, other):
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot compare quantities with different base units")
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot compare quantities with different exponents")
         return self.value < other.value
 
@@ -249,9 +249,9 @@ class UnitValue:
         return self.__lt__(other) or self.__eq__(other)
 
     def __gt__(self, other):
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot compare quantities with different base units")
-        if self.unitDict.keys() != other.unitDict.keys():
+        if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot compare quantities with different exponents")
         return self.value > other.value
 
@@ -259,28 +259,31 @@ class UnitValue:
         return self.__gt__(other) or self.__eq__(other)
 
     def __hash__(self):
-        return hash((self.value, self.unitDict))
+        return hash((self.value, self.unit_dict))
 
     def __repr__(self):
-        return f'ValueWithUnit("{self.value}","{self.unitDict}")'
+        return f'ValueWithUnit("{self.value}","{self.unit_dict}")'
 
-    def __str__(self):
+    def __str__(self, unit=None):
+        print_dict = self.unit_dict
+        if unit is not None:
+            pass    # TODO
         # Create a string of the unit
         unit_str = ''
-        for k in self.unitDict.keys():
-            if self.unitDict[k] == 1:
+        for k in self.unit_dict.keys():
+            if print_dict[k] == 1:
                 unit_str += k + '*'
-            elif self.unitDict[k] > 1:
-                unit_str += k + '^' + str(self.unitDict[k]) + '*'
-            elif self.unitDict[k] < 0:
-                unit_str += k + '^' + str(self.unitDict[k]) + '*'
+            elif print_dict[k] > 1:
+                unit_str += k + '^' + str(print_dict[k]) + '*'
+            elif print_dict[k] < 0:
+                unit_str += k + '^' + str(print_dict[k]) + '*'
         # Remove the last '*' from the unit string
         unit_str = unit_str[:-1]
         return str(self.value) + ' ' + unit_str
 
-    def isSiUnit(self, unit):
+    def is_si_unit(self, unit):
         # Check if the unit is a SI unit
-        if unit in self.unitDict.keys():
+        if unit in self.unit_dict.keys():
             return True
         else:
             return False
