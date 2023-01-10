@@ -1,4 +1,4 @@
-from numetric import UnitValue
+from numetricpy import UnitValue
 
 x = UnitValue(10, 'm*s^2')
 y = UnitValue(5, 'm*s^-1')

@@ -1,6 +1,6 @@
-# numetric
+# numetricpy
 
-The numetric library provides a UnitValue class for representing physical quantities that have both a value and an associated unit. 
+The numetricpy library provides a UnitValue class for representing physical quantities that have both a value and an associated unit. 
 The UnitValue class overloads arithmetic operators such as +, -, *, and / to allow for easy manipulation and calculation of quantities with units. 
 The class also overloads comparison operators such as ==, !=, <, <=, >, and >= to allow for comparison of quantities with the same units.
 
