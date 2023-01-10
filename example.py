@@ -1,5 +1,7 @@
 from numetricpy import UnitValue
 
+# Example file for use of numetricpy
+
 x = UnitValue(10, 'm*s^2')
 y = UnitValue(5, 'm*s^-1')
 z = UnitValue(2, 'm*s^2')
