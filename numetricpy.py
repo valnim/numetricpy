@@ -21,9 +21,6 @@ def convertToSi(unit):
     elif unit == 'g':   # gram
         factor = 0.001
         conv_dict = {'s': 0, 'm': 0, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
-    elif unit == 'dag':     # deka
-        factor = 0.01
-        conv_dict = {'s': 0, 'm': 0, 'kg': 1, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
 
     # Time Units
     elif unit == 'ms':  # Millisecond

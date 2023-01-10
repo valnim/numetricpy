@@ -16,7 +16,6 @@ This can help reduce the likelihood of errors in calculations and improve the cl
 ### Mass:
 * milligram (mg)
 * gram (g)
-* deka (dag)
 ### Time:
 * millisecond (ms)
 * minute (min)
