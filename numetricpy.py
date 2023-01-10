@@ -264,12 +264,29 @@ class UnitValue:
     def __repr__(self):
         return f'ValueWithUnit("{self.value}","{self.unit_dict}")'
 
-    def __str__(self, unit=None):
-        print_dict = self.unit_dict
-        if unit is not None:
-            pass    # TODO
+    def __str__(self):
         # Create a string of the unit
         unit_str = ''
+        for k in self.unit_dict.keys():
+            if self.unit_dict[k] == 1:
+                unit_str += k + '*'
+            elif self.unit_dict[k] > 1:
+                unit_str += k + '^' + str(self.unit_dict[k]) + '*'
+            elif self.unit_dict[k] < 0:
+                unit_str += k + '^' + str(self.unit_dict[k]) + '*'
+        # Remove the last '*' from the unit string
+        unit_str = unit_str[:-1]
+        return str(self.value) + ' ' + unit_str
+
+    def str_as(self, unit):
+        print_dict = self.unit_dict
+        print_value = self.value
+        # Create a string of the unit
+        unit_str = unit + '*'
+        if unit is not None:
+            factor, offset, si_unit = convert_to_si(unit)
+            print_value = (print_value - offset) / factor
+            print_dict = {k: print_dict[k] - si_unit[k] for k in print_dict.keys()}
         for k in self.unit_dict.keys():
             if print_dict[k] == 1:
                 unit_str += k + '*'
@@ -279,7 +296,7 @@ class UnitValue:
                 unit_str += k + '^' + str(print_dict[k]) + '*'
         # Remove the last '*' from the unit string
         unit_str = unit_str[:-1]
-        return str(self.value) + ' ' + unit_str
+        return str(print_value) + ' ' + unit_str
 
     def is_si_unit(self, unit):
         # Check if the unit is a SI unit

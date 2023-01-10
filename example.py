@@ -34,6 +34,8 @@ print(d)
 print(e)
 print(f)
 print(bar)
+print(bar.str_as('bar'))
+print(bar.str_as('Pa'))
 
 input("Press any key to continue...")
 
