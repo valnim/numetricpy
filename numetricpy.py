@@ -137,9 +137,12 @@ def convert_to_si(unit):
     elif unit == 'Sv':  # Sievert
         factor = 1
         conv_dict = {'s': -2, 'm': 2, 'kg': 0, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
-    elif unit == 'kat':    # Katal
+    elif unit == 'kat':  # Katal
         factor = 1
         conv_dict = {'s': -1, 'm': 0, 'kg': 0, 'A': 0, 'K': 0, 'mol': 1, 'cd': 0}
+    elif unit == '':    # dimensionless
+        factor = 1
+        conv_dict = {'s': 0, 'm': 0, 'kg': 0, 'A': 0, 'K': 0, 'mol': 0, 'cd': 0}
     else:
         raise ValueError('Unit not found')
     return factor, offset, conv_dict
