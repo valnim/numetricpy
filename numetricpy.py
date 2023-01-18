@@ -370,4 +370,4 @@ class UnitConstants:
     # Amount of substance
     N_A = UnitValue(6.02214076e23, 'mol^-1')        # Avogadro constant
     F = N_A * eV                                    # Faraday constant
-    R = k * N_A                                     # Gas constant
+    Rm = k * N_A                                    # Molar Gas constant
