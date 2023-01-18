@@ -179,14 +179,14 @@ class UnitValue:
     def __add__(self, other):
         if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot add quantities with different base units")
-        if self.unit_dict.keys() != other.unit_dict.keys():
+        if self.unit_dict != other.unit_dict:
             raise ValueError("Cannot add quantities with different exponents")
         return UnitValue(self.value + other.value, self.unit_dict)
 
     def __sub__(self, other):
         if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot add quantities with different base units")
-        if self.unit_dict.keys() != other.unit_dict.keys():
+        if self.unit_dict != other.unit_dict:
             raise ValueError("Cannot add quantities with different exponents")
         return UnitValue(self.value - other.value, self.unit_dict)
 
@@ -233,7 +233,7 @@ class UnitValue:
 
     def __eq__(self, other):
         # If the units are the same, then compare the values
-        if self.unit_dict.keys() == other.unit_dict.keys():
+        if self.unit_dict == other.unit_dict:
             return self.value == other.value
         else:
             return False
@@ -244,7 +244,7 @@ class UnitValue:
     def __lt__(self, other):
         if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot compare quantities with different base units")
-        if self.unit_dict.keys() != other.unit_dict.keys():
+        if self.unit_dict != other.unit_dict:
             raise ValueError("Cannot compare quantities with different exponents")
         return self.value < other.value
 
@@ -254,7 +254,7 @@ class UnitValue:
     def __gt__(self, other):
         if self.unit_dict.keys() != other.unit_dict.keys():
             raise ValueError("Cannot compare quantities with different base units")
-        if self.unit_dict.keys() != other.unit_dict.keys():
+        if self.unit_dict != other.unit_dict:
             raise ValueError("Cannot compare quantities with different exponents")
         return self.value > other.value
 
