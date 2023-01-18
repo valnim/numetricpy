@@ -160,7 +160,7 @@ class UnitValue:
                 if '^' in k:
                     unit_and_exp = k.split('^')
                     if self.is_si_unit(unit_and_exp[0]):
-                        self.unit_dict[unit_and_exp[0]] = int(unit_and_exp[1])
+                        self.unit_dict[unit_and_exp[0]] += int(unit_and_exp[1])
                     else:
                         factor, offset, si_unit = convert_to_si(unit_and_exp[0])
                         self.unit_dict = {i: self.unit_dict[i] + si_unit[i] * int(unit_and_exp[1])
