@@ -320,45 +320,45 @@ class UnitConstants:
 
     # Electromagnetism
     eV = UnitValue(1.602176634e-19, 'C')            # Electron volt
-    mu_0 = UnitValue(1.25663706212e-6, 'N*A^-2')     # vacuum magnetic permeability
-    eps_0 = 1 / (mu_0 * c ** 2)                       # vacuum electric permittivity
-    k_c = 1 / (4 * pi * eps_0)                        # Coulomb's constant
-    Z_0 = mu_0 * c                                    # characteristic impedance of vacuum
+    mu_0 = UnitValue(1.25663706212e-6, 'N*A^-2')    # vacuum magnetic permeability
+    eps_0 = 1 / (mu_0 * c ** 2)                     # vacuum electric permittivity
+    k_c = 1 / (4 * pi * eps_0)                      # Coulomb's constant
+    Z_0 = mu_0 * c                                  # characteristic impedance of vacuum
 
     # Quantum Mechanics
     h = UnitValue(6.62607015e-34, 'J*Hz^-1')        # Planck constant
     hbar = h / (2 * pi)                             # Reduced Planck constant
-    Phi_0 = h / (2 * eV)                             # Magnetic flux quantum
-    G_0 = 2 * eV ** 2 / h                             # Conductance quantum
-    R_k = h / e ** 2                                 # von Klitzing constant
-    K_j = 2 * eV / h                                 # Josephson constant
-    alpha = e ** 2 / (4 * pi * eps_0 * h)            # Fine-structure constant
+    Phi_0 = h / (2 * eV)                            # Magnetic flux quantum
+    G_0 = 2 * eV ** 2 / h                           # Conductance quantum
+    R_k = h / e ** 2                                # von Klitzing constant
+    K_j = 2 * eV / h                                # Josephson constant
+    alpha = e ** 2 / (4 * pi * eps_0 * h)           # Fine-structure constant
 
     # Thermodynamics
     k = UnitValue(1.38064852e-23, 'J*K^-1')         # Boltzmann constant
-    k_b = k                                          # Boltzmann constant
+    k_b = k                                         # Boltzmann constant
     sigma = pi ** 2 * k ** 4 / (60 * h ** 3 * c ** 2)  # Stefan-Boltzmann constant
-    c_1 = 2 * h * c ** 2                             # first radiation constant
-    c_2 = h * c / k                                  # second radiation constant
+    c_1 = 2 * h * c ** 2                            # first radiation constant
+    c_2 = h * c / k                                 # second radiation constant
     b = UnitValue(2.8977729e-3, 'm*K')              # Wien wavelength displacement law constant
 
     # Gravity and Cosmology
     G = UnitValue(6.67408e-11, 'm^3*kg^-1*s^-2')    # Gravitational constant
-    g_earth = UnitValue(9.80665, 'm*s^-2')           # Standard acceleration of gravity
-    m_planck = ((hbar * c) / G) ** 0.5               # Planck mass
-    l_planck = hbar / m_planck / c                    # Planck length
-    t_planck = l_planck / c                           # Planck time
-    T_planck = m_planck * c ** 2 / k                  # Planck temperature
+    g_earth = UnitValue(9.80665, 'm*s^-2')          # Standard acceleration of gravity
+    m_planck = ((hbar * c) / G) ** 0.5              # Planck mass
+    l_planck = hbar / m_planck / c                  # Planck length
+    t_planck = l_planck / c                         # Planck time
+    T_planck = m_planck * c ** 2 / k                # Planck temperature
 
     # Electron Constants
-    m_e = UnitValue(9.1093837015e-31, 'kg')          # Electron mass
-    lambda_c = hbar / m_e / c                         # Compton wavelength
-    r_e = eV ** 2 / (4 * pi * eps_0 * m_e * c ** 2)    # Classical electron radius
-    sigma_e = 8 * pi / 3 * r_e ** 2                   # Electron cross section
-    mu_b = e * hbar / (2 * m_e)                       # Bohr magneton
-    mu_e = -1.00115965218128 * mu_b                   # Nuclear magneton
-    g_e = -2 * mu_e / mu_b                             # Lande Factor of the electron
-    gamma_e = -2 * mu_e / hbar                        # Electron gyromagnetic ratio
+    m_e = UnitValue(9.1093837015e-31, 'kg')         # Electron mass
+    lambda_c = hbar / m_e / c                       # Compton wavelength
+    r_e = eV ** 2 / (4 * pi * eps_0 * m_e * c ** 2)  # Classical electron radius
+    sigma_e = 8 * pi / 3 * r_e ** 2                 # Electron cross section
+    mu_b = e * hbar / (2 * m_e)                     # Bohr magneton
+    mu_e = -1.00115965218128 * mu_b                 # Nuclear magneton
+    g_e = -2 * mu_e / mu_b                          # Lande Factor of the electron
+    gamma_e = -2 * mu_e / hbar                      # Electron gyromagnetic ratio
 
     # Atom physics
     a_0 = 4 * pi * eps_0 * hbar ** 2 / (m_e * e ** 2)  # Bohr radius
