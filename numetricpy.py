@@ -167,7 +167,7 @@ class UnitValue:
                                           for i in self.unit_dict.keys()}
                 else:
                     if self.is_si_unit(k):
-                        self.unit_dict[k] = 1
+                        self.unit_dict[k] += 1
                     else:
                         factor, offset, si_unit = convert_to_si(k)
                         self.unit_dict = {i: self.unit_dict[i] + si_unit[i] for i in self.unit_dict.keys()}
