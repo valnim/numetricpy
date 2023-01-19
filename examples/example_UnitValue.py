@@ -1,4 +1,4 @@
-from numetricpy import UnitValue
+from numetricpy.numetricpy import UnitValue
 
 # Example file for use of numetricpy
 

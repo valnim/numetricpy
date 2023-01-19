@@ -1,4 +1,4 @@
-from numetricpy import UnitConstants
+from numetricpy.numetricpy import UnitConstants
 
 # Call all constants in UnitConstants
 pi = UnitConstants.pi

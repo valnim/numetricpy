@@ -1,4 +1,4 @@
-import numetricpy as nmp
+import numetricpy.numetricpy as nmp
 
 # SI units
 m = nmp.UnitValue(1, 'm')
