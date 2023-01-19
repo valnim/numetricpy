@@ -51,7 +51,7 @@ E_h = UnitConstants.E_h
 
 N_A = UnitConstants.N_A
 F = UnitConstants.F
-R = UnitConstants.R
+Rm = UnitConstants.Rm
 
 
 
